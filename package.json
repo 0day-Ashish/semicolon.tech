@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack & npx next-video sync -w",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -12,6 +12,7 @@
     "@fontsource/press-start-2p": "^5.2.6",
     "gsap": "^3.13.0",
     "next": "15.4.6",
+    "next-video": "^2.2.3",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
