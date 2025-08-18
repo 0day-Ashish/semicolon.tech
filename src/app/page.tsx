@@ -72,14 +72,19 @@ export default function Page() {
   return (
     <>
       {/* Navbar */}
-      <nav
-        className="w-full absolute top-0 left-0 z-30 flex items-center px-8 py-6"
-        style={{
-          backdropFilter: "blur(10px)",
-          zIndex: 30,
-        }}
-      >
-      </nav>
+      <div className="w-full flex justify-center fixed top-6 left-0 z-50 pointer-events-none">
+        <nav
+          className="mx-auto z-50 flex items-center justify-center gap-8 px-10 py-3 
+                     rounded-full bg-black/80 text-white backdrop-blur-md shadow-lg w-fit pointer-events-auto"
+        >
+          <Link href="#home" className="hover:text-yellow-400 transition">HOME</Link>
+          <Link href="#about" className="hover:text-yellow-400 transition">ABOUT US</Link>
+          <Link href="#speakers" className="hover:text-yellow-400 transition">SPEAKERS & JUDGES</Link>
+          <Link href="#partners" className="hover:text-yellow-400 transition">PARTNERS</Link>
+          <Link href="#organizers" className="hover:text-yellow-400 transition">ORGANIZERS</Link>
+          <Link href="#contact" className="hover:text-yellow-400 transition">CONTACT</Link>
+        </nav>
+      </div>
       <div
         className="absolute right-8 z-50"
         style={{
@@ -128,7 +133,7 @@ export default function Page() {
           }}
         />
       </div>
-      {/* Features Section */}
+      {/* about us section */}
       <section className="w-full relative flex items-center justify-center overflow-hidden p-0 m-0" style={{ minHeight: "1100px" }}>
         <Image
           src="/2nd-bg.png"
