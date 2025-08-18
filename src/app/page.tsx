@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import TextType from './components/TextType';
 import Image from "next/image";
 import Link from "next/link";
@@ -7,8 +7,9 @@ import useLenis from './lib/useLenis';
 
 
 export default function Page() {
-   useLenis({ lerp: 0.07 });
+  useLenis({ lerp: 0.07 });
   const [step, setStep] = useState<"image" | "video" | "home">("image");
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     if (step === "video") {
@@ -78,10 +79,9 @@ export default function Page() {
           zIndex: 30,
         }}
       >
-        {/* Navbar content without Semicolon'25 */}
       </nav>
       <div
-        className="absolute left-8 top-24 z-40"
+        className="absolute right-8 z-50"
         style={{
           fontFamily: "'Press Start 2P', cursive",
           color: "white",
@@ -92,6 +92,25 @@ export default function Page() {
       >
         Semicolon'25
       </div>
+      <button
+        className="absolute top-8 right-8 z-50"
+        style={{ background: "transparent", border: "none", padding: 0, cursor: "pointer" }}
+        onClick={() => {
+          if (audioRef.current) {
+            audioRef.current.play();
+          }
+        }}
+        aria-label="Play Music"
+      >
+        <Image
+          src="/play.png"
+          alt="Play Music"
+          width={48}
+          height={48}
+          className="drop-shadow-lg"
+        />
+      </button>
+      <audio ref={audioRef} src="/audios/play.mp3" />
       <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover -z-10"
@@ -108,12 +127,6 @@ export default function Page() {
             video.play();
           }}
         />
-        <div
-          className="absolute inset-0 flex flex-col items-center justify-center bg-black/40"
-          style={{ zIndex: 20 }}
-        >
-          {/* Removed Semicolon'25 from here */}
-        </div>
       </div>
       {/* Features Section */}
       <section className="w-full relative flex items-center justify-center overflow-hidden p-0 m-0" style={{ minHeight: "1100px" }}>
