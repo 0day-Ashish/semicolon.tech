@@ -3,8 +3,11 @@ import { useState, useEffect } from "react";
 import TextType from './components/TextType';
 import Image from "next/image";
 import Link from "next/link";
+import useLenis from './lib/useLenis';
+
 
 export default function Page() {
+   useLenis({ lerp: 0.07 });
   const [step, setStep] = useState<"image" | "video" | "home">("image");
 
   useEffect(() => {
@@ -13,7 +16,6 @@ export default function Page() {
       if (video) {
         video.onended = () => setStep("home");
       }
-
       const timer = setTimeout(() => setStep("home"), 8000);
       return () => clearTimeout(timer);
     }
@@ -25,8 +27,10 @@ export default function Page() {
       <div className="flex flex-col items-center justify-center min-h-screen">
         <div className="fixed inset-0 flex flex-col items-center justify-center bg-black px-4 sm:px-6 lg:px-8">
           <div className="relative w-full max-w-md flex flex-col items-center space-y-8">
-            <img
+            <Image
               src="/land.png"
+              width={100}
+              height={100}
               alt="Intro Image"
               className="w-[150px] h-[150px] sm:w-[200px] sm:h-[190px] cursor-pointer transition-transform duration-300 hover:scale-110"
               onClick={() => setStep("video")}
@@ -65,30 +69,63 @@ export default function Page() {
 
   // Main website content
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
-      <video
-        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
-        src="/videos/main-bg-video.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        style={{ backgroundColor: "black" }}
-        onEnded={e => {
-          const video = e.currentTarget;
-          video.currentTime = 0;
-          video.play();
+    <>
+      {/* Navbar */}
+      <nav
+        className="w-full absolute top-0 left-0 z-30 flex items-center px-8 py-6"
+        style={{
+          backdropFilter: "blur(10px)",
+          zIndex: 30,
         }}
-      />
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-red z-10 bg-black/40">
-        <h1 className="text-5xl font-bold mb-4">Welcome to Mario World</h1>
-        <p className="text-lg mb-6">Tap to start your adventure</p>
-        <button className="px-6 py-3 bg-red-600 rounded-lg hover:bg-red-700">
-          Start Game
-        </button>
+      >
+        {/* Navbar content without Semicolon'25 */}
+      </nav>
+      <div
+        className="absolute left-8 top-24 z-40"
+        style={{
+          fontFamily: "'Press Start 2P', cursive",
+          color: "white",
+          fontSize: "3rem",
+          fontWeight: "bold",
+          textShadow: "2px 2px 8px #000",
+        }}
+      >
+        Semicolon'25
       </div>
-      {/* <h1 className="text-white text-bold">hello</h1> */}
-    </div>
+      <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+        <video
+          className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+          src="/videos/main-bg-video.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          style={{ backgroundColor: "black" }}
+          onEnded={e => {
+            const video = e.currentTarget;
+            video.currentTime = 0;
+            video.play();
+          }}
+        />
+        <div
+          className="absolute inset-0 flex flex-col items-center justify-center bg-black/40"
+          style={{ zIndex: 20 }}
+        >
+          {/* Removed Semicolon'25 from here */}
+        </div>
+      </div>
+      {/* Features Section */}
+      <section className="w-full relative flex items-center justify-center overflow-hidden p-0 m-0" style={{ minHeight: "1100px" }}>
+        <Image
+          src="/2nd-bg.png"
+          alt="Features Background"
+          fill
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ zIndex: 0 }}
+        />
+      </section>
+    </>
   );
 }
+
