@@ -1,0 +1,13 @@
+{
+  "id": "a532d8e66bc7",
+  "workspace": "/Users/ashishranjandas/AGENTRIX/workspaces/0day-Ashish/semicolon.tech",
+  "ops": [
+    {
+      "kind": "write",
+      "path": "README.md",
+      "before_blob_path": "/Users/ashishranjandas/AGENTRIX/workspaces/0day-Ashish/semicolon.tech/.agentrix/journal/a532d8e66bc7/blobs/788bd2739b2f4459ac7c0ea6f08f9024-README.md",
+      "after_preview": "# Frontend\n\nA Next.js frontend application built with TypeScript.\n\n## Getting Started\n\n- Install dependencies: `npm install`\n- Run development server: `npm run ",
+      "ts": 1779722022160
+    }
+  ]
+}
